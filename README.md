@@ -16,7 +16,7 @@ services:
       - "8082:80"
 ```
 
-3. CAC BUOC THUC HIEN VA KIEM TRA
+3. CAC BUOC THUC HIEN VA KET QUA TERMINAL THUC TE
 
 3.1. Khoi chay dich vu o che do ngam
 Lenh thuc hien:
@@ -25,9 +25,10 @@ docker compose up -d
 ```
 Ket qua dau ra:
 ```text
-[+] Running 2/2
- ✔ Network ss9-bt5_default  Created
- ✔ Container ss9-bt5-web-1  Started
+Container session_09_ex5-web-1 Creating
+Container session_09_ex5-web-1 Created
+Container session_09_ex5-web-1 Starting
+Container session_09_ex5-web-1 Started
 ```
 
 3.2. Kiem tra trang thai dich vu dang chay
@@ -37,14 +38,14 @@ docker compose ps
 ```
 Ket qua dau ra:
 ```text
-NAME              IMAGE          COMMAND                  SERVICE   CREATED          STATUS          PORTS
-ss9-bt5-web-1     nginx:alpine   "/docker-entrypoint.…"   web       10 seconds ago   Up 9 seconds    0.0.0.0:8082->80/tcp
+NAME                   IMAGE          COMMAND                  SERVICE   CREATED        STATUS                  PORTS
+session_09_ex5-web-1   nginx:alpine   "/docker-entrypoint.…"   web       1 second ago   Up Less than a second   0.0.0.0:8082->80/tcp, [::]:8082->80/tcp
 ```
 
 3.3. Gui truy van HTTP kiem tra phan hoi
 Lenh thuc hien:
 ```bash
-curl http://localhost:8082
+curl -s http://localhost:8082
 ```
 Ket qua dau ra:
 ```text
@@ -60,13 +61,17 @@ font-family: Tahoma, Verdana, Arial, sans-serif; }
 </head>
 <body>
 <h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.</p>
+<p>If you see this page, nginx is successfully installed and working.
+Further configuration is required for the web server, reverse proxy, 
+API gateway, load balancer, content cache, or other features.</p>
 
 <p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
-Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
+<a href="https://nginx.org/">nginx.org</a>.<br/>
+To engage with the community please visit
+<a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
+For enterprise grade support, professional services, additional 
+security features and capabilities please refer to
+<a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
 
 <p><em>Thank you for using nginx.</em></p>
 </body>
@@ -80,15 +85,18 @@ docker compose down
 ```
 Ket qua dau ra:
 ```text
-[+] Running 2/2
- ✔ Container ss9-bt5-web-1  Removed
- ✔ Network ss9-bt5_default  Removed
+Container session_09_ex5-web-1 Stopping
+Container session_09_ex5-web-1 Stopped
+Container session_09_ex5-web-1 Removing
+Container session_09_ex5-web-1 Removed
+Network session_09_ex5_default Removing
+Network session_09_ex5_default Removed
 ```
 
 4. TONG KET CAC LENH
 ```bash
 docker compose up -d
 docker compose ps
-curl http://localhost:8082
+curl -s http://localhost:8082
 docker compose down
 ```
